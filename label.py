@@ -1,7 +1,8 @@
-def llsb():
+def llsb(lignenumber,duration):
 	import cv2
 	import label_image
-
+	import time
+	timeout = time.time() + 1*duration
 	size = 4
 
 
@@ -9,8 +10,10 @@ def llsb():
 	classifier = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
 
 	webcam = cv2.VideoCapture(0) #Using default WebCam connected to the PC.
-
-	while True:
+	fourcc = cv2.VideoWriter_fourcc(*'XVID')
+	out = cv2.VideoWriter('C:/Users/Arbing/Desktop/Code/video/video'+str(lignenumber)+ '.avi',fourcc, 20.0, (640,480))
+	cap = cv2.VideoCapture(0)
+	while cap.isOpened():
 		(rval, im) = webcam.read()
 		im=cv2.flip(im,1,0) #Flip to act as a mirror
 
@@ -21,6 +24,7 @@ def llsb():
 		faces = classifier.detectMultiScale(mini)
 
 		# Draw rectangles around each face
+		camera_status = ''
 		for f in faces:
 			(x, y, w, h) = [v * size for v in f] #Scale the shapesize backup
 			cv2.rectangle(im, (x,y), (x+w,y+h), (0,255,0), 4)
@@ -36,10 +40,14 @@ def llsb():
 			
 			font = cv2.FONT_HERSHEY_TRIPLEX
 			cv2.putText(im, text,(x+w,y), font, 1, (0,0,255), 2)
-
+			camera_status = text
+		out.write(im)
 		# Show the image
+
 		cv2.imshow('Capture',   im)
+		
 		key = cv2.waitKey(10)
 		# if Esc key is press then break out of the loop 
-		
-		return text
+		if (time.time() > timeout):
+			break
+	return camera_status

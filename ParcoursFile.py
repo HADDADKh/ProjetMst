@@ -3,7 +3,17 @@ import os
 import speech_recognition as sr
 import sys
 from time import sleep
+#import speech
 from label import *
+from gtts import gTTS	   
+from time import sleep
+import os
+import pyglet
+import playsound
+import sounddevice as sd
+from rec import *
+from videor import *
+
 r=sr.Recognizer();
 
 def TTS(question, i):
@@ -15,18 +25,13 @@ def TTS(question, i):
 def STT(voix):
 	with sr.AudioFile(voix) as source:
 	 audio=r.listen(source)
-	print(r.recognize_google(audio))
+	print(r.recognize_google(audio, language = 'fr'))
 
-#def play(voix):
-#   from pygame import mixer
-#   mixer.init()
-#   mixer.music.load(voix)
-#   mixer.music.play()
    
 fichier = open("emotion.txt", "w") 
 			
 theFile= open('Question.txt', 'r') 
-#print ("error")   
+duration = 20 
 for lignenumber,ligne in enumerate(theFile) :
 	   #Afficher la question
 	   
@@ -34,25 +39,28 @@ for lignenumber,ligne in enumerate(theFile) :
 	   
 	   #Tranformation de Texte en Voix
 	   
-	   voix=TTS(ligne, lignenumber)
-	   
-	   #Activer le voix
-	   
-	   #play(voix)
-	   
-	   #---------------------------
-	   #Robot en situation d'ecout exemple 5 mls
-	   sleep(5)
-	   
-	   #detection d"emotion (audio_video)
 
-	   x=llsb()
-	   #Transformation de voix en texte
-	   fichier.write('Emotion du personne paraport question du robot  ') 
-	   fichier.write(x) 
+	   tts = gTTS(text=ligne, lang='fr')
+	   #Sauvgarder la question
+
+	   filename ='C:/Users/Arbing/Desktop/Code/questions/question'+str(lignenumber)+'.mp3'
+	   tts.save(filename)
+	   
+	   #Pronnociation de la question
+	   playsound.playsound(filename, True)
+	   print ('Vous avez 10 seconds pour parler')
+	   rec_fun(lignenumber,duration)
+	   
+	   
+	   
+	   #detection d'emotion  et sauvgarder le video
+	   x=llsb(lignenumber,duration)
+	   #Sauvgarder les emotion de personne aprés chaque question
+	   fichier.write('Emotion du personne par rapport au question du robot numéro  '+'  '+ str(lignenumber)) 
+	   fichier.write('-'+x) 
 	   fichier.write('\n')
-	   #Speach to text
-	   STT("Rep%s.wav" % str(lignenumber+1))
+	   #Transformation de la voix au Texte
+	   STT("C:/Users/Arbing/Desktop/Code/reponses/reponse"+str(lignenumber)+".wav")
 
 	   
 	 
