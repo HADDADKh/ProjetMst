@@ -1,4 +1,4 @@
-def rec_fun(lignenumber,duration):
+def rec_fun(person,lignenumber,duration):
 	   import sounddevice as sd
 	   import numpy as np
 	   #duration = 15
@@ -9,4 +9,4 @@ def rec_fun(lignenumber,duration):
 		# Convert `data` to 32 bit integers:
 	   myrecording = (np.iinfo(np.int32).max * (myrecording_data/np.abs(myrecording_data).max())).astype(np.int32)
 	   import scipy.io.wavfile as wr
-	   wr.write('C:/Users/Arbing/Desktop/Code/reponses/reponse'+str(lignenumber)+'.wav', 44100, myrecording)
+	   wr.write('C:/Users/Arbing/Desktop/Code/reponses/reponse'+str(lignenumber)+'_'+str(person)+'.wav', 44100, myrecording)

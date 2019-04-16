@@ -1,4 +1,4 @@
-def llsb(lignenumber,duration):
+def llsb(person,lignenumber,duration):
 	import cv2
 	import label_image
 	import time
@@ -11,7 +11,7 @@ def llsb(lignenumber,duration):
 
 	webcam = cv2.VideoCapture(0) #Using default WebCam connected to the PC.
 	fourcc = cv2.VideoWriter_fourcc(*'XVID')
-	out = cv2.VideoWriter('C:/Users/Arbing/Desktop/Code/video/video'+str(lignenumber)+ '.avi',fourcc, 20.0, (640,480))
+	out = cv2.VideoWriter('C:/Users/Arbing/Desktop/Code/video/video'+str(lignenumber)+'_'+str(person)+ '.avi',fourcc, 20.0, (640,480))
 	cap = cv2.VideoCapture(0)
 	while cap.isOpened():
 		(rval, im) = webcam.read()

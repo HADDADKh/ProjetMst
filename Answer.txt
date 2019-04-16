@@ -1,0 +1,10 @@
+person 0question 0 oui effectivement ma famille me manque je vais essayer de retourner chez chez moi dans les dans le plus tôt possible
+person 0question 1 oui souvenir c'est les fêtes le parc sous les personnes donc il ne peut pas oublier l'enfance avec les jouets tout ça et les familles à la famille essentiellement
+person 0question 2 Paris Paris est également aussi bengardane où j'habite et c'est c'est l'enfance en fait c'est l'enfance oui
+person 0question 3 impossible ça c'est chose de Secret donc je peux pas te montrer mes derniers messages je suis vraiment désolé
+person 0question 4 vous achetez très difficile c'est très difficile franchement il travailler pendant le weekend tout au long de la semaine c'est parce qu'on sait très très fatiguée donc du coup c'est très difficile de travailler donc je suis vraiment désolé encore pour
+person 1question 0 oui ma famille me manque
+person 1question 1 Je veux glace
+person 1question 2 Tahran j'ai mangé glace
+person 1question 3 Non je vais pas te montrer
+person 1question 4 non  je veux pas aller
